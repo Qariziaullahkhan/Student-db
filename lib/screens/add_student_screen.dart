@@ -14,6 +14,7 @@ class AddStudentScreen extends StatefulWidget {
 
 class _AddStudentScreenState extends State<AddStudentScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String passwordMessage = 'Type a password';
 
   late String name, email, mobile;
 
@@ -58,8 +59,14 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   if (text == null || text.isEmpty) {
                     return 'Please provide value';
                   }
-
-                  email = text;
+                  bool emailValid =
+                      RegExp(r'^.+@[a-zA-Z]+\.[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                          .hasMatch(text);
+                  print(emailValid);
+                  if (!emailValid) {
+                    return 'Please Enter a Valid Email';
+                  }
+                  email = text!;
                   return null;
                 },
               ),
@@ -76,6 +83,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                 validator: (text) {
                   if (text == null || text.isEmpty) {
                     return 'Please provide value';
+                  } else if (text == "@") {
+                    return "Please Enter a valid email";
                   }
 
                   mobile = text;

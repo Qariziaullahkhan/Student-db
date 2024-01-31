@@ -18,9 +18,11 @@ class StudentItemInfoWidget extends StatelessWidget {
               style: const TextStyle(fontSize: 20),
             ),
           ),
-          Text(
-            value,
-            style: const TextStyle(fontSize: 20),
+          Flexible(
+            child: Text(
+              value,
+              style: const TextStyle(fontSize: 20),
+            ),
           ),
         ],
       ),
